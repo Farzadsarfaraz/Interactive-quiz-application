@@ -1,38 +1,38 @@
 const questions =[
     {
-        question: " which is larger in the world",
+        question: " What is my favorite food?",
         answers:[
-            {text: "shark", correct: false},
-            {text: "fish", correct: true},
-            {text: "donkey", correct: false},
-            {text: "horse", correct: false},
+            {text: "Rice", correct: false},
+            {text: "Meat", correct: true},
+            {text: "Potato", correct: false},
+            {text: "Nothing", correct: false},
         ]
     },
 {
-    question: " which is larger in the world",
+    question: " What is my favorite color",
     answers:[
-        {text: "shark", correct: false},
-        {text: "fish", correct: false},
-        {text: "donkey", correct: false},
-        {text: "horse", correct: true},
+        {text: "Black", correct: false},
+        {text: "white", correct: false},
+        {text: "purple", correct: false},
+        {text: "ALL", correct: true},
     ]
 },
 {
-    question: " which is larger in the world",
+    question: " What do i do in my free time",
     answers:[
-        {text: "shark", correct: false},
-        {text: "fish", correct: true},
-        {text: "donkey", correct: false},
-        {text: "horse", correct: false},
+        {text: "playing football", correct: false},
+        {text: "programming", correct: true},
+        {text: "watching movie", correct: false},
+        {text: "going out", correct: false},
     ]
 },
 {
-    question: " which is larger in the world",
+    question: " How much do I have in my account?",
     answers: [
-        {text: "shark", correct: false},
-        {text: "fish", correct: false},
-        {text: "donkey", correct: true},
-        {text: "horse", correct: false},
+        {text: "0 euro", correct: false},
+        {text: "1000 euro", correct: false},
+        {text: "500 euro", correct: true},
+        {text: "7000 euro", correct: false},
     ]
 }
 ]
@@ -49,7 +49,6 @@ function startQuiz(){
     nextButton.innerHTML = "NEXT";
     showQuestion();
 }
-
 function showQuestion(){
     resetState()
     let currentQuestion = questions[currentQuestionIndex];
@@ -66,9 +65,7 @@ function showQuestion(){
         }
         button.addEventListener("click", selectanswer);
     });
-
 }
-
 
 function resetState(){
     nextButton.style.display ="none";
@@ -76,12 +73,12 @@ function resetState(){
         answerButtons.removeChild(answerButtons.firstChild);
     }
 };
-
 function selectanswer(e){
     const selectBtn = e.target;
     const isCorrect = selectBtn.dataset.correct == "true";
     if(isCorrect){
         selectBtn.classList.add("correct");
+        score++;
     }else{
         selectBtn.classList.add("incorrect");
     }
@@ -93,4 +90,27 @@ function selectanswer(e){
     });
     nextButton.style.display = "block";
 }
+function showScore(){
+    resetState();
+    questionElement.innerHTML = `You scored ${score} out of ${questions.length}!  prentage: ${(score * 100)/questions.length}%` ;
+
+    nextButton.innerHTML =" play Again";
+    nextButton.style.display = "block";
+
+}
+function handleNextButton(){
+    currentQuestionIndex++;
+    if(currentQuestionIndex < questions.length){
+        showQuestion();
+    }else{
+        showScore();
+    }
+}
+nextButton.addEventListener('click', ()=>{
+    if(currentQuestionIndex < questions.length){
+        handleNextButton();
+    }else{
+        startQuiz();
+    }
+})
 startQuiz();

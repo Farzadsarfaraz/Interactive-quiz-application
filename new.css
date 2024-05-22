@@ -30,5 +30,16 @@
 }
 .incorrect{
     background: red;
-
+}
+.btn:hover:not([disabled]){
+    background: blue;
+    color: rgb(255, 252, 252);
+}
+.btn:disabled{
+    cursor: no-drop;
+    color: black;
+}
+#question{
+    font-size: 1.5rem;
+    padding: 15px;
 }
