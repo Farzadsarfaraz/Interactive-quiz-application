@@ -18,6 +18,3 @@ This is a simple and interactive Quiz Application built with HTML, CSS, and vani
 HTML5 – For creating the quiz structure.
 
 CSS3 – For styling and responsive layout.
-
-JavaScript (ES6+) – For quiz logic, interactivity, and DOM updates.
-.https://farzadsarfaraz.github.io/My-Quiz-App/new.html
